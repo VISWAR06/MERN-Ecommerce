@@ -6,6 +6,7 @@ import Footer from './componetns/Footer'
 import Men from './pages/Men'
 import Women from './pages/Women'
 import Kids from './pages/Kids'
+import Contact from './pages/contact'
 const App = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const App = () => {
 <Route path='/men'element={<Men/>}/>
 <Route path='/women'element={<Women/>}/>
 <Route path='/kids'element={<Kids/>}/>
+<Route path='contact' element={<Contact/>}/>
 
 
         </Routes>
