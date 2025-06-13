@@ -2,9 +2,10 @@ import React from 'react';
 import imge from '../assets/hero_image.png';
 import hi from '../assets/hand_icon.png';
 import { Link } from 'react-router-dom';
-
+import Popular from './popular';
 const Home = () => {
   return (
+    <>
     <div className="mt-14  h-[800px] text-6xl font-extrabold flex w-full">
       
       <div className="w-1/2 flex justify-center items-center">
@@ -22,6 +23,8 @@ const Home = () => {
         </button>
       </div>
     </div>
+    <Popular/>
+    </>
   );
 };
 
