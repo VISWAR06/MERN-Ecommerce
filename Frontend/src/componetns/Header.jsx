@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
 const Header = () => {
   return (
-    <div className='flex justify-between items-center w-full h-12 shadow-lg'>
-      <div>LOGO</div>
+    <div className='flex justify-between items-center w-full h-20 shadow-lg'>
+      <div><img src={logo} alt='logo'/></div>
       <div className='flex gap-4'>
         <Link to='/'>Shop</Link>
         <Link to='/men'>Men</Link>
