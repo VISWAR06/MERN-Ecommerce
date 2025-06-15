@@ -11,12 +11,13 @@ const Popular = () => {
       </div>
     </div>
     <div className='flex justify-center gap-4 h-64 py-4'>
-    {popularr.map(item=>(
+      <Link > {popularr.map(item=>(
       <div key={item.id } className='text-center'>
         <img src={item.image} alt={item.name} className='h-full'/>
         <h4 className=''>{item.name}</h4>
         </div>
-    ))}
+    ))}</Link>
+   
 
     </div>
     </>
