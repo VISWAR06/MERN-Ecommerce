@@ -12,7 +12,7 @@ app.use(cors())
 connectdb()
 connectcloud()
 
-app.use('/api/user',userroutes)
+app.use('/api/ user',userroutes)
 
 app.listen(port,()=>{
     console.log('lisitn in port' + port)
