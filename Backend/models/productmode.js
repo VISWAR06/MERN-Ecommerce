@@ -20,3 +20,4 @@ const schema = new mongoose.schema({
 
 })
 const productmodel= mongoose.model.schema||mongoose.model('product',schema)
+export default productmodel
