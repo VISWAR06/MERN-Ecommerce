@@ -9,4 +9,4 @@ const register=async(req,res)=>{
 const admin = async (req,res)=>{
 
 }
- export 
+ export {login,register,admin}
