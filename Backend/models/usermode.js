@@ -5,5 +5,5 @@ const user=new mongoose.Schema({
     password:{type:String,required:true},
     cartdata:{type:Object,default:{}}
 },{minimize:false})
-const usermodel=mongoose.models.user||mongoose.model('user',user)
-export default usermodel
+const usermodels=mongoose.models.user||mongoose.model('user',user)
+export default usermodels
