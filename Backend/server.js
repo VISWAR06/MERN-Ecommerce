@@ -1,15 +1,20 @@
-require('dotenv').config()
-const express =require('express')
+import express from 'express'
+import cors from 'express'
+import 'dotenv/config.js'
+import connectdb from './config/db.js'
+
 const app=express()
-const userRoute=require('./routes/userRoute')
-const connection = require('./config/db')
-const port=process.env.PORT||5000
+const port =process.env.PORT||5000
 
-
-connection()
 app.use(express.json())
+app.use(cors())
+connectdb()
 
-app.use('/api/user',userRoute)
+app.get('/',(req,res)=>{
+    res.send('api working')
+
+})
+
 app.listen(port,()=>{
-    console.log(`listending in ${port}`)
+    console.log('lisitn in port' + port)
 })
