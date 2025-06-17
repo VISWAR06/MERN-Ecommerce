@@ -6,7 +6,17 @@ const token=(id)=>{
     return jwt.sign({id},process.env.SECRET)
 }
 const login = async(req,res)=>{
-    res.json({message:"wordk"})
+    try{
+        const {email,password}=req.body;
+        const find = await Usermodel.findOne({email})
+        if(!find)return res.status(400).json({message:'not found'})
+        const check = await bcrypt.compare(password,find.password)
+        if(check)return res.status(200).json({message:"loged in successfully"})
+        else return res.status(400).json({message:"wrong password"})
+
+    }catch(e){
+        res.status(400).json({message:e.message})
+    }
 }
 const register = async(req,res)=>{
     try{
@@ -29,7 +39,7 @@ const register = async(req,res)=>{
         const create = newuser.save()
         const ctoken = token(create._id);
 
-return res.status(200).json({message:"user created"})
+return res.status(200).json({message:"user created",token:ctoken})
 
     }catch(e){
         console.log(e.message)
