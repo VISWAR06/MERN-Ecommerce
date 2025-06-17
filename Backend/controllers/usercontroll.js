@@ -1,33 +1,40 @@
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
-import usermodel from '../models/usermode'
+import Usermodel from "../models/usermode.js";
 import validator from 'validator'
-const login = async (req,res)=>{
-
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+const token=(id)=>{
+    return jwt.sign({id},process.env.SECRET)
 }
+const login = async(req,res)=>{
+    res.json({message:"wordk"})
+}
+const register = async(req,res)=>{
+    try{
+        const {name,email,password}=req.body;
+        const exist=Usermodel.findOne(email)
+        if(exist){
+            return res.status(400).json({message:"user alredy exist"})
+        }
+        if(password.length<8){
+            return res.status(400).json({message:"provide strong password"})
+        }
+        if(!validator(email)){
+            return res.json(400).json({message:'provide valid email'})
+        }
+        const salt = await bcrypt.gensalt(10)
+        const hash = await bcrypt.hash(password,salt)
+        const newuser = new Usermodel({
+            name,password:hash,email
+        })
+        const create = newuser.save()
+        const ctoken = token(savedUser._id);
 
-const register=async(req,res)=>{
+    res.json({ success: true, token: ctoken });
 
-    const {name,email,password}=req.body
-    if(!validator.isEmail(email)){
-        return res.status(400).json({message:'provide a valid email'})
+    }catch(e){
+        console.log(e.message)
+        res.statu(500).json({message:e.message})
+
     }
-    const exist = await usermodel.findOne({email})
-    if(exist)return res.status(400).json({message:'user already'})
-    if(password.length<8)return res.status(400).json("provide strng password")
-    const salt =await bcrypt.genSalt(10)
-    const hash=await bcrypt.hash(password,salt)
-
-    const newuser= new usermodel({
-        name,
-        email,
-        password:hash
-    })
-    const save = await newuser.save()
-
 }
-
-const admin = async (req,res)=>{
-
-}
- export {login,register,admin}
+export {login,register}
