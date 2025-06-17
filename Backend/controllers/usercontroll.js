@@ -7,12 +7,16 @@ const token=(id)=>{
 }
 const login = async(req,res)=>{
     try{
+        
         const {email,password}=req.body;
         const find = await Usermodel.findOne({email})
         if(!find)return res.status(400).json({message:'not found'})
+             const ctoken = token(find._id)
         const check = await bcrypt.compare(password,find.password)
-        if(check)return res.status(200).json({message:"loged in successfully"})
+        if(check)return res.status(200).json({message:"loged in successfully",token:ctoken})
         else return res.status(400).json({message:"wrong password"})
+   
+    
 
     }catch(e){
         res.status(400).json({message:e.message})
