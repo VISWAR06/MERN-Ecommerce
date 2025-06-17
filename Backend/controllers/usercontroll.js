@@ -11,29 +11,29 @@ const login = async(req,res)=>{
 const register = async(req,res)=>{
     try{
         const {name,email,password}=req.body;
-        const exist=Usermodel.findOne(email)
+        const exist= await Usermodel.findOne({email})
         if(exist){
             return res.status(400).json({message:"user alredy exist"})
         }
         if(password.length<8){
             return res.status(400).json({message:"provide strong password"})
         }
-        if(!validator(email)){
-            return res.json(400).json({message:'provide valid email'})
+        if(!validator.isEmail(email)){
+            return res.status(400).json({message:'provide valid email'})
         }
-        const salt = await bcrypt.gensalt(10)
+        const salt = await bcrypt.genSalt(10)
         const hash = await bcrypt.hash(password,salt)
         const newuser = new Usermodel({
             name,password:hash,email
         })
         const create = newuser.save()
-        const ctoken = token(savedUser._id);
+        const ctoken = token(create._id);
 
-    res.json({ success: true, token: ctoken });
+return res.status(200).json({message:"user created"})
 
     }catch(e){
         console.log(e.message)
-        res.statu(500).json({message:e.message})
+        res.status(500).json({message:e.message})
 
     }
 }
