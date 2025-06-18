@@ -4,7 +4,7 @@ const schema = new mongoose.schema({
         type:String,
         required:true
     },
-    descrtion:{
+    description:{
         type:String,
         requried:true
     },
@@ -14,7 +14,7 @@ const schema = new mongoose.schema({
     image:{type:Arrya,required:true},
     category:{type:String,requrired:true},
     subcategory:{type:String,requried:true},
-    bestseller:{type:Boolean},
+    bestsellers:{type:Boolean},
     sizes:{type:Number,required:true},
     date:{type:Number,required:true}
 
