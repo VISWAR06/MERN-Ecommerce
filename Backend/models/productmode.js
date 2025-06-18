@@ -11,7 +11,7 @@ const schema = new mongoose.schema({
     price:{
         type:Number,required:true
     },
-    image:{type:Arrya,required:true},
+    image:{type:[String],required:true},
     category:{type:String,requrired:true},
     subcategory:{type:String,requried:true},
     bestsellers:{type:Boolean},
