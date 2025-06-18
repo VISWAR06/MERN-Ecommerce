@@ -4,7 +4,7 @@ import 'dotenv/config.js';
 import connectdb from './config/db.js';
 import connectcloud from './config/cloudinary.js';
 import route from './routes/userroutes.js'
-import productroute from './routes/productsroute.js';
+import productrouter from './routes/productsroute.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,7 +16,7 @@ connectdb();
 connectcloud();
 
 app.use('/api/user',route)
-app.use('/api/product',productroute)
+app.use('/api/product',productrouter)
 
 app.listen(port, () => {
   console.log('Listening on port ' + port);
