@@ -4,7 +4,7 @@ const schema = new mongoose.schema({
         type:String,
         required:true
     },
-    desc:{
+    descrtion:{
         type:String,
         requried:true
     },
