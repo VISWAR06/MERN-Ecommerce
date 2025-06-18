@@ -1,4 +1,6 @@
 const addproduct = async (req,res)=>{
+    const {name,description,sizes,category,subcategory,bestsellers,price}=req.body
+    
 
 }
 const removeproduct = async (req,res)=>{
