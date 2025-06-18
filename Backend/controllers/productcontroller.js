@@ -7,7 +7,7 @@ const listprdt = async(req,res)=>{
 const removeprdt = async(req,res)=>{
 
 }
-const single=async(req,res)=>{
+const singleprdt=async(req,res)=>{
 
 }
 export {addprdt,listprdt,removeprdt,single}
