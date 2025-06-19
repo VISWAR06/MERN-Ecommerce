@@ -29,6 +29,11 @@ await uploadproduct.save()
 
 }
 const removeproduct = async (req,res)=>{
+  try{
+
+  }catch(e){
+    
+  }
 
 }
 const listproduct = async(req,res)=>{
