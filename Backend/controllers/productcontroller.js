@@ -1,5 +1,6 @@
 import {v2 as cloudinary} from 'cloudinary'
 import productmodel from '../models/productmode.js'
+import Usermodel from '../models/usermode.js'
 const addproduct = async (req,res)=>{
     try{
  const {name,description,sizes,category,subcategory,bestsellers,price}=req.body
@@ -30,13 +31,18 @@ await uploadproduct.save()
 }
 const removeproduct = async (req,res)=>{
   try{
+    const {id}=req.body
+    const product = await productmodel.findByIdAndDelete(id)
+    res.status(200).json({message:"deleted",product})
 
   }catch(e){
-    
+    res.status(400).json({message:e.message})
   }
 
 }
 const listproduct = async(req,res)=>{
+  await Usermodel.find({})
+  
 
 }
 const singleproduct = async(req,res)=>{
