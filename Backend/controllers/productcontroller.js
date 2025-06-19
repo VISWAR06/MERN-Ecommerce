@@ -41,7 +41,7 @@ const removeproduct = async (req,res)=>{
 
 }
 const listproduct = async(req,res)=>{
-  await Usermodel.find({})
+  // await Usermodel.find({})
   
 
 }
