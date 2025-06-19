@@ -41,11 +41,18 @@ const removeproduct = async (req,res)=>{
 
 }
 const listproduct = async(req,res)=>{
-  // await Usermodel.find({})
+try{
+   const list = await productmodel.find({})
+  res.status(200).json({list})
   
+
+}catch(e){
+res.status(400).json({message:e.message})
+}
 
 }
 const singleproduct = async(req,res)=>{
+  
 
 }
 export {addproduct,removeproduct,listproduct,singleproduct}
