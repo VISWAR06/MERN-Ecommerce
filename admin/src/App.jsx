@@ -1,9 +1,9 @@
-
+import Navbar from "./components/navbar"
 
 const app =()=>{
   return(
     <>
-    <h1 className="text-red-500">hello</h1>
+   <Navbar/>
     </>
   )
 }
