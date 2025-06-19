@@ -52,10 +52,12 @@ res.status(400).json({message:e.message})
 
 }
 const singleproduct = async(req,res)=>{
-  tyr{
-    
+  try{
+    const {id} = req.body
+    const single = await productmodel.findById(id)
+    res.status(200).json({single})
   }catch(e){
-    
+    res.status(400).json({message:e.message})
   }
 
 }
