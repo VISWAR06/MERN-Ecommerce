@@ -52,7 +52,11 @@ res.status(400).json({message:e.message})
 
 }
 const singleproduct = async(req,res)=>{
-  
+  tyr{
+    
+  }catch(e){
+    
+  }
 
 }
 export {addproduct,removeproduct,listproduct,singleproduct}
