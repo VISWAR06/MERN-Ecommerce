@@ -51,4 +51,7 @@ return res.status(200).json({message:"user created",token:ctoken})
 
     }
 }
-export {login,register}
+const admin = async(req,res){
+    
+}
+export {login,register,admin}
