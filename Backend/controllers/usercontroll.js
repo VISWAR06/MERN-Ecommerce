@@ -51,7 +51,18 @@ return res.status(200).json({message:"user created",token:ctoken})
 
     }
 }
-const admin = async(req,res){
-    
+const admin = async(req,res)=>{
+    try{
+        const {email,password}=req.body
+        if(email===process.env.ADMIN_EMAIL && password===process.env.ADMIN_PASS){
+            const adtoken = jwt.sign(password,process.env.JWT_SECRET)
+            res.status(200).json({adtoken})
+        }else res.status(400).json({message:"invalid"})
+
+    }catch(e){
+ console.log(e.message)
+        res.status(500).json({message:e.message})
+    }
+
 }
 export {login,register,admin}
