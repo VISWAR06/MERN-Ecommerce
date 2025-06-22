@@ -10,11 +10,12 @@ import Placeorder from './pages/placeorder'
 import Product from './pages/product'
 import Collections from './pages/collections'
 import Navbar from './componetns/Navbar'
-
+import Hero from './componetns/hero'
 const App = () => {
   return (
    <div>
     <Navbar/>
+    <Hero/>
 <Routes>
   <Route path ='/' element={<Home/>}/>
   <Route path ='/about' element={<About/>}/>
