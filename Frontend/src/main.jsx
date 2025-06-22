@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import {Shopprovider} from './context/shop.jsx'
+import ShopProvider from './context/shopcontext.jsx'
+
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <Shopprovider>
-<App/>
-  </Shopprovider>
-  
-  </BrowserRouter>,
+    <ShopProvider>
+      <App />
+    </ShopProvider>
+  </BrowserRouter>
 )
