@@ -1,31 +1,30 @@
 import React from 'react'
 import {Routes,Route} from 'react-router-dom'
-import Home from './pages/Home'
-import Header from './componetns/Header'
-import Footer from './componetns/Footer'
-import Men from './pages/Men'
-import Women from './pages/Women'
-import Kids from './pages/Kids'
+import About from './pages/about'
+import Cart from './pages/cart'
 import Contact from './pages/contact'
-import Newcollections from './pages/Newcollections'
+import Home from './pages/home'
+import Login from './pages/login'
+import Orders from './pages/orderss'
+import Placeorder from './pages/placeorder'
+import Product from './pages/product'
+import Collections from './pages/collections'
+
 const App = () => {
   return (
-    <div>
-      <Header/>
-      <main>
-        <Routes>
-<Route path='/' element={<Home/>}/>
-<Route path='/men'element={<Men/>}/>
-<Route path='/women'element={<Women/>}/>
-<Route path='/kids'element={<Kids/>}/>
-<Route path='contact' element={<Contact/>}/>
-<Route path='/new'element={<Newcollections/>}/>
-
-
-        </Routes>
-      </main>
-      <Footer/>
-    </div>
+   <div>
+<Routes>
+  <Route path ='/' element={<Home/>}/>
+  <Route path ='/about' element={<About/>}/>
+  <Route path ='/contact' element={<Contact/>}/>
+  <Route path ='/others' element={<Orders/>}/>
+  <Route path ='/product/:productId' element={<Product/>}/>
+  <Route path ='/placeorder' element={<Placeorder/>}/>
+  <Route path ='/login' element={<Login/>}/>
+  <Route path ='/cart' element={<Cart/>}/>
+  <Route path ='/collections' element={<Collections/>}/>
+</Routes>
+   </div>
   )
 }
 
