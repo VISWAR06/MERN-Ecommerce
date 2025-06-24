@@ -175,7 +175,7 @@ export const products = [
         price: 190,
         image: [p_img7],
         category: "Men",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "L", "XL"],
         date: 1716621542448,
         bestseller: false
@@ -211,7 +211,7 @@ export const products = [
         price: 110,
         image: [p_img10],
         category: "Men",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "L", "XL"],
         date: 1716622235448,
         bestseller: false
@@ -271,7 +271,7 @@ export const products = [
         price: 140,
         image: [p_img15],
         category: "Men",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716627745448,
         bestseller: false
@@ -295,7 +295,7 @@ export const products = [
         price: 150,
         image: [p_img17],
         category: "Men",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716629945448,
         bestseller: false
@@ -331,7 +331,7 @@ export const products = [
         price: 190,
         image: [p_img20],
         category: "Women",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716633245448,
         bestseller: false
@@ -355,7 +355,7 @@ export const products = [
         price: 200,
         image: [p_img22],
         category: "Women",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716635445448,
         bestseller: false
@@ -607,7 +607,7 @@ export const products = [
         price: 280,
         image: [p_img43],
         category: "Kids",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716658545448,
         bestseller: false
@@ -655,7 +655,7 @@ export const products = [
         price: 300,
         image: [p_img47],
         category: "Kids",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716662945448,
         bestseller: false
@@ -679,7 +679,7 @@ export const products = [
         price: 310,
         image: [p_img49],
         category: "Kids",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716665145448,
         bestseller: false
@@ -691,7 +691,7 @@ export const products = [
         price: 340,
         image: [p_img50],
         category: "Kids",
-        subCategory: "Bottomwear",
+        subCategory: "BottomWear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716666245448, bestseller: false
     },
