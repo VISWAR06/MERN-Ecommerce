@@ -11,6 +11,7 @@ import Product from './pages/product'
 import Collections from './pages/collections'
 import Navbar from './componetns/Navbar'
 import Footer from './componetns/Footer'
+import Policy from './componetns/Policy'
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
   <Route path ='/placeorder' element={<Placeorder/>}/>
   <Route path ='/login' element={<Login/>}/>
   <Route path ='/cart' element={<Cart/>}/>
-  <Route path ='/collections' element={<Collections/>}/>
+  <Route path ='/collection' element={<Collections/>}/>
+  <Route path='/policy' element={<Policy/>}/>
 </Routes>
 <Footer/>
    </div>
