@@ -6,7 +6,7 @@ const ProductItems = ({ id, name, price, image }) => {
   const { curr } = useContext(shopcontext)
 
   return (
-    <Link to={`/product/${id}`} className="block p-4 hover:shadow-lg">
+    <Link to={`/product/${id}`} className=" p-4 hover:shadow-lg">
       <div>
         <img src={image} alt={name} className="w-full h-48 object-cover" />
       </div>

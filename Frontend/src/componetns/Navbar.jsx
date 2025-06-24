@@ -1,6 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/frontend_assets/assets'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
   const cartCount = 3;
@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className='flex justify-between items-center px-6 py-4 bg-white shadow-md'>
       <div>
-        <img src={assets.logo} alt="logo" className='h-10 w-auto' />
+        <Link to ={'/'}><img src={assets.logo} alt="logo" className='h-10 w-auto' /></Link>
       </div>
 
       <div className='w-1/2'>

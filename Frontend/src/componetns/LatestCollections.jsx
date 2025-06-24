@@ -10,7 +10,7 @@ const LatestCollections = () => {
     if (products && products.length > 0) {
       setLatest(products.slice(0, 12));
     }
-  }, [products]); 
+  }, []); 
 
   return (
     <div>
