@@ -14,8 +14,8 @@ const Bestseller = () => {
 
   return (
     <div>
-      <div>
-        <h1>Best <span>Sellers</span></h1>
+      <div className='flex justify-center font-serif text-2xl'>
+        <h1>Best <span className=' my-2'>Sellers</span></h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {bestseller.map((item, index) => (

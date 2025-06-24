@@ -15,8 +15,8 @@ const LatestCollections = () => {
   return (
     <div>
       <div>
-        <h1 className='flex justify-center text-3xl'>
-          Latest <span className='ml-2'>-collections</span>
+        <h1 className='flex justify-center font-serif text-3xl'>
+          Latest <span className='ml-2'>collections</span>
         </h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
