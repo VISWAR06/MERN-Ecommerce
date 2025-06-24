@@ -63,10 +63,10 @@ const Collections = () => {
   return (
     <div className="flex p-4">
 
-      {/* Left Filters */}
+     
       <div className="w-1/4 flex flex-col space-y-6">
 
-        {/* Category Filter */}
+        
         <div className="border border-black p-4">
           <h1 className="font-semibold mb-2">Category</h1>
           <div className="space-y-2">
@@ -97,7 +97,7 @@ const Collections = () => {
           </div>
         </div>
 
-        {/* Subcategory Filter */}
+        
         <div className="border border-black p-4">
           <h1 className="font-semibold mb-2">Subcategory</h1>
           <div className="space-y-2">
@@ -129,7 +129,7 @@ const Collections = () => {
         </div>
       </div>
 
-      {/* Right Products Section */}
+     
       <div className="w-3/4 pl-6 flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <h1 className="font-serif text-xl font-bold">All Products</h1>
