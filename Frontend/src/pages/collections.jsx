@@ -4,142 +4,110 @@ import ProductItems from '../componetns/productitems';
 
 const Collections = () => {
   const { products } = useContext(shopcontext);
+
   const [filterproduct, setFilterproduct] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [sortOption, setSortOption] = useState("Relevant");
 
   useEffect(() => {
     setFilterproduct(products);
   }, [products]);
 
+  const applyFilters = (category, subcategory, sortBy) => {
+    let filtered = [...products];
+
+    if (category) {
+      filtered = filtered.filter(p => p.category === category);
+    }
+
+    if (subcategory) {
+      filtered = filtered.filter(p => p.subCategory === subcategory);
+    }
+
+    if (sortBy === "High-Low") {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (sortBy === "Low-High") {
+      filtered.sort((a, b) => a.price - b.price);
+    }
+
+    setFilterproduct(filtered);
+  };
+
   const handleCategory = (value) => {
     const updatedCategory = selectedCategory === value ? "" : value;
     setSelectedCategory(updatedCategory);
-
-    if (updatedCategory === "") {
-      if (selectedSubcategory) {
-        const filtered = products.filter(p => p.subCategory === selectedSubcategory);
-        setFilterproduct(filtered);
-      } else {
-        setFilterproduct(products);
-      }
-    } else {
-      if (selectedSubcategory) {
-        const filtered = products.filter(p =>
-          p.category === updatedCategory && p.subCategory === selectedSubcategory
-        );
-        setFilterproduct(filtered);
-      } else {
-        const filtered = products.filter(p => p.category === updatedCategory);
-        setFilterproduct(filtered);
-      }
-    }
+    applyFilters(updatedCategory, selectedSubcategory, sortOption);
   };
 
   const handleSubcategory = (value) => {
     const updatedSubcategory = selectedSubcategory === value ? "" : value;
     setSelectedSubcategory(updatedSubcategory);
+    applyFilters(selectedCategory, updatedSubcategory, sortOption);
+  };
 
-    if (updatedSubcategory === "") {
-      if (selectedCategory) {
-        const filtered = products.filter(p => p.category === selectedCategory);
-        setFilterproduct(filtered);
-      } else {
-        setFilterproduct(products);
-      }
-    } else {
-      if (selectedCategory) {
-        const filtered = products.filter(p =>
-          p.category === selectedCategory && p.subCategory === updatedSubcategory
-        );
-        setFilterproduct(filtered);
-      } else {
-        const filtered = products.filter(p => p.subCategory === updatedSubcategory);
-        setFilterproduct(filtered);
-      }
-    }
+  const handleSortChange = (value) => {
+    setSortOption(value);
+    applyFilters(selectedCategory, selectedSubcategory, value);
   };
 
   return (
     <div className="flex p-4">
-
-     
+      
+      {/* Sidebar for Category & Subcategory */}
       <div className="w-1/4 flex flex-col space-y-6">
-
         
+        {/* Category Filter */}
         <div className="border border-black p-4">
           <h1 className="font-semibold mb-2">Category</h1>
           <div className="space-y-2">
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={selectedCategory === "Men"}
-                onChange={() => handleCategory("Men")}
-              />
-              <span>Men</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={selectedCategory === "Women"}
-                onChange={() => handleCategory("Women")}
-              />
-              <span>Women</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={selectedCategory === "Kids"}
-                onChange={() => handleCategory("Kids")}
-              />
-              <span>Kids</span>
-            </label>
+            {["Men", "Women", "Kids"].map((cat) => (
+              <label key={cat} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={selectedCategory === cat}
+                  onChange={() => handleCategory(cat)}
+                />
+                <span>{cat}</span>
+              </label>
+            ))}
           </div>
         </div>
 
-        
+        {/* Subcategory Filter */}
         <div className="border border-black p-4">
           <h1 className="font-semibold mb-2">Subcategory</h1>
           <div className="space-y-2">
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={selectedSubcategory === "Topwear"}
-                onChange={() => handleSubcategory("Topwear")}
-              />
-              <span>Topwear</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={selectedSubcategory === "BottomWear"}
-                onChange={() => handleSubcategory("BottomWear")}
-              />
-              <span>BottomWear</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={selectedSubcategory === "Winterwear"}
-                onChange={() => handleSubcategory("Winterwear")}
-              />
-              <span>Winterwear</span>
-            </label>
+            {["Topwear", "BottomWear", "Winterwear"].map((sub) => (
+              <label key={sub} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={selectedSubcategory === sub}
+                  onChange={() => handleSubcategory(sub)}
+                />
+                <span>{sub}</span>
+              </label>
+            ))}
           </div>
         </div>
       </div>
 
-     
+      {/* Main Product Listing Area */}
       <div className="w-3/4 pl-6 flex flex-col space-y-4">
         <div className="flex justify-between items-center">
           <h1 className="font-serif text-xl font-bold">All Products</h1>
-          <select className="border border-gray-400 px-2 py-1 rounded">
+          <select
+            className="border border-gray-400 px-2 py-1 rounded"
+            value={sortOption}
+            onChange={(e) => handleSortChange(e.target.value)}
+          >
             <option value="Relevant">Sort by: Relevant</option>
-            <option value="High-Low">Sort by: High-Low</option>
-            <option value="Low-High">Sort by: Low-High</option>
+            <option value="High-Low">Price: High to Low</option>
+            <option value="Low-High">Price: Low to High</option>
           </select>
         </div>
 
+        {/* Products Grid */}
         <div className="grid grid-cols-3 gap-4">
           {filterproduct.map((item, index) => (
             <ProductItems
