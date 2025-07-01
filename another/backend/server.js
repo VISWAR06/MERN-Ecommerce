@@ -5,6 +5,7 @@ import connect from './config/db.js'
 const app=express()
 const port=process.env.PORT
 connect();
+app.use(express.json())
 app.use('/api',productsroute)
 app.listen(port,()=>{
     console.log(`running in ${port} `)

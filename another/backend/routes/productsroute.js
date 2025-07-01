@@ -1,6 +1,13 @@
 import express from 'express'
 const route=express.Router()
-import {allpro} from '../controllers/productscontro.js'
+import {allpro,createproduct} from '../controllers/productscontro.js'
 
-route.get('/products',allpro)
+route.get('/prdts',allpro)
+
+route.post('/prdts',createproduct)
+
+
+
+
+
 export default route
