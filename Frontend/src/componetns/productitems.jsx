@@ -1,19 +1,46 @@
-import React, { useContext } from 'react'
-import { shopcontext } from '../context/shopcontext'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { shopcontext } from '../context/shopcontext';
+import ProductItems from '../componetns/productitems';
 
-const ProductItems = ({ id, name, price, image }) => {
-  const { curr } = useContext(shopcontext)
+const Product = () => {
+  const { productId } = useParams();
+  const { products } = useContext(shopcontext);
+  const [productdata, setProductdata] = useState(null);
 
-  return (
-    <Link to={`/product/${id}`} className="p-4 hover:shadow-lg block">
-      <div>
-        <img src={image[0]} alt={name} className="w-full h-48 object-cover" />
+  const getProductData = () => {
+    const foundProduct = products.find((item) => item._id === productId);
+    if (foundProduct) {
+      setProductdata(foundProduct);
+    }
+  };
+
+  useEffect(() => {
+    getProductData();
+  }, [products, productId]);
+
+  return productdata ? (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">{productdata.name}</h1>
+      <div className="flex space-x-4">
+        {Array.isArray(productdata.image) &&
+          productdata.image.map((img, index) => (
+            <div key={index} className="w-48 h-48">
+              <img
+                src={img}
+                alt={productdata.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
       </div>
-      <p className="mt-2 font-semibold">{name}</p>
-      <p className="text-gray-600">{curr}{price}</p>
-    </Link>
-  )
-}
+      <div className="mt-4 text-lg font-semibold">
+        Price: ₹{productdata.price}
+      </div>
+    </div>
+  ) : (
+    <div className="p-6">Loading...</div>
+  );
+};
 
-export default ProductItems
+export default Product;
