@@ -13,7 +13,7 @@ const Shop = () => {
       <Womensitem/>
       <Offers/>
       <Newcollections/>
-      <Footer/>
+     
     </div>
   )
 }
