@@ -12,6 +12,9 @@ const Display = (products) => {
             <img className='h-32'src={product.image} alt="image" />
         </div>
         <div> <img   src={product.image} alt="" /></div>
+        
+        
+        {/*rightside */}
         <div><p>{product.name}</p></div>
         <div className='flex'>
           <img src={star} alt="star" />
@@ -21,6 +24,16 @@ const Display = (products) => {
           <img src={dullstar} alt="dullstar" />
         </div>
         <p>(112)</p>
+        <div>${product.new_price}</div>
+        <div><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, ipsam incidunt! Maxime laboriosam optio maiores accusamus, omnis error totam voluptatem iusto molestiae ipsa ipsam voluptates ea reiciendis cumque quis? Provident.</p></div>
+        <div><h2>SELECT SIZE</h2>
+        <div>S</div>
+        <div>L</div>
+        <div>M</div>
+        <div>XL</div>
+        <div>XXL</div>
+        </div>
+        <div><button className='bg-red-600 h-12 w-32'>ADD TO CART</button></div>
        
     </div>
   )
