@@ -4,7 +4,7 @@ import cart from '../Assets/Frontend_Assets/cart_icon.png'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
-    <div>
+    <div className='flex'>
         <div>
         <Link to='/'> <img src={Logo} alt="logo" />
             <p>shopper</p></Link>
