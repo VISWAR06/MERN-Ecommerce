@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import hero from '../Assets/Frontend_Assets/hero_image.png'
 const Hero = () => {
   return (
-    <div>
+   <div className="bg-gradient-to-br from-blue-400 to-purple-500">
+
       <div>
         <h1>Latest arrivas</h1>
         <h2><Link to='/men'>For Men</Link></h2>
