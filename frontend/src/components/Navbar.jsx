@@ -6,8 +6,9 @@ const Navbar = () => {
   return (
     <div>
         <div>
-            <img src={Logo} alt="logo" />
-            <p>shopper</p>
+        <Link to='/'> <img src={Logo} alt="logo" />
+            <p>shopper</p></Link>
+           
         </div>
         <div>
             <div>
@@ -21,8 +22,8 @@ const Navbar = () => {
         </div>
 
         <div>
-            <div><button>Login</button></div>
-            <div><div><img src={cart} alt='cart' /></div></div>
+            <div><Link to='/login'><button>Login</button></Link></div>
+            <div><div><Link to='/cart'><img src={cart} alt='cart' /></Link></div></div>
         </div>
       
     </div>
