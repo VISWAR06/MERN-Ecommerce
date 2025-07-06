@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Womensitem from '../components/Womensitem'
 import Offers from '../components/Offers'
 import Newcollections from '../components/Newcollections'
+import Footer from '../components/Footer'
 
 const Shop = () => {
   return (
@@ -12,6 +13,7 @@ const Shop = () => {
       <Womensitem/>
       <Offers/>
       <Newcollections/>
+      <Footer/>
     </div>
   )
 }
