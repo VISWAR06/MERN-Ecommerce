@@ -1,22 +1,28 @@
-const addproduct=async(req,res)=>{
-    const{prdt}=req.body;
-    try{
-        const addprdt=new Product({
-            id:prdt.id,
-            name:prdt.name,
-            image:prdt.image,
-            category:prdt.category,
-            new_price:prdt.new_price
-        })
+const Product = require('../models/addprdtmodel');
+
+const addproduct = async (req, res) => {
+    try {
+        const { id, name, category, new_price } = req.body;
+        const image = req.file ? req.file.filename : null;
+
+        if (!image) {
+            return res.status(400).json({ message: "Image file is required." });
+        }
+
+        const addprdt = new Product({
+            id,
+            name,
+            image, 
+            category,
+            new_price
+        });
+
         await addprdt.save();
-        res.status(200).json({message:"product added"})
-        
-    }catch(e){
-        res.status(400).json({message:e.message})
+        res.status(200).json({ message: "Product added successfully" });
+    } catch (e) {
+        console.error(e.message);
+        res.status(400).json({ message: e.message });
     }
+};
 
-
-}
-
-
-module.exports={addproduct}
+module.exports = { addproduct };
