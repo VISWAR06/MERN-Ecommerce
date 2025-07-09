@@ -24,5 +24,21 @@ const addproduct = async (req, res) => {
         res.status(400).json({ message: e.message });
     }
 };
+const removeproduct = async(req,res)=>{
+    const{id}=req.body;
+    try{
+     
+const result = await Product.findOneAndDelete({ id });
 
-module.exports = { addproduct };
+if (!result) {
+  return res.status(404).json({ message: "Product not found" });
+}
+res.status(200).json({ message: "Removed successfully" });
+
+
+    }catch(e){
+        res.status(400).json({message:e.message})
+    }
+}
+
+module.exports = { addproduct,removeproduct };
