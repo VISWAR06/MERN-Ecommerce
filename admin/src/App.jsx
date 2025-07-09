@@ -1,11 +1,11 @@
-import Navbar from "./components/navbar"
-import Sidebar from "./components/sidebar"
-const app =()=>{
-  return(
-    <>
-   <Navbar/>
-   <Sidebar/>
-    </>
+import React from 'react'
+
+const App = () => {
+  return (
+    <div>
+      
+    </div>
   )
 }
-export default app
+
+export default App
