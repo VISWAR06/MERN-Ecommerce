@@ -16,7 +16,18 @@ const Addproduct = () => {
     }
     const add=async()=>{
         console.log(productdetail)
+        let resp;
+        let product=productdetail
+        let formdata=new Formdata();
+        formdata.append('product',image)
+        await fetch('http://localhost:/api/upload',{
+            method:'POST',
+            headers:{
+                acc
+            }
+        })
     }
+
   return (
     <div>
       <div>
