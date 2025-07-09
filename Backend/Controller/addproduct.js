@@ -40,5 +40,14 @@ res.status(200).json({ message: "Removed successfully" });
         res.status(400).json({message:e.message})
     }
 }
+const allproduct=async(req,res)=>{
+    try{
+        let allproducts=await Product.find({})
+        res.status(200).json({message:allproducts})
 
-module.exports = { addproduct,removeproduct };
+    }catch(e){
+         res.status(400).json({message:e.message})
+    }
+}
+
+module.exports = { addproduct,removeproduct,allproduct };
