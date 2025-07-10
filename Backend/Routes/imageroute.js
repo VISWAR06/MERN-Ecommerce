@@ -1,11 +1,13 @@
-const express=require('express')
-const {addproduct, removeproduct, allproduct}=require('../Controller/addproduct.js')
-const { uploadimage } = require('../Controller/images.js')
-const upload = require('../middlewares/Uploadimage.js')
-const route=express.Router()
+const express = require('express');
+const { addproduct, removeproduct, allproduct } = require('../Controller/addproduct.js');
+const upload = require('../middlewares/Uploadimage.js');
 
-route.post("/upload",upload.single("image"),uploadimage)
-route.post('/addproduct',upload.single('image'),addproduct)
-route.post('/removeproduct',removeproduct)
-route.get('/allproduct',allproduct)
-module.exports=route
+const router = express.Router();
+
+// Upload image + add product (image field name = 'image')
+router.post('/addproduct', upload.single('image'), addproduct);
+
+router.post('/removeproduct', removeproduct);
+router.get('/allproduct', allproduct);
+
+module.exports = router;

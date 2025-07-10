@@ -1,23 +1,29 @@
-const express = require('express')
-const app=express();
-const cors=require('cors')
-const imageroute=require('./Routes/imageroute.js')
-require('dotenv').config()
-const db=require('./config/db.js');
+const express = require('express');
+const cors = require('cors');
+const imageroute = require('./Routes/imageroute.js');
+require('dotenv').config();
+const db = require('./config/db.js');
 
-app.use(express.json())
-app.use(cors())
+const app = express();
+const port = process.env.PORT || 5000;
 
-const port=process.env.PORT||4000;
-
+// Connect to DB
 db();
-app.get('/',(req,res)=>{
-    res.send('working in express')
-})
-app.use('/api',imageroute)
 
+// Middleware
+app.use(cors()); // Enable CORS for all origins
+app.use(express.json());
 
+// Routes
+app.get('/', (req, res) => {
+  res.send('working in express');
+});
 
-app.listen(port,()=>{
-    console.log(`running in ${port}`)
-})
+app.use('/api', imageroute);
+
+// Serve uploaded images statically (optional)
+app.use('/uploadimage', express.static('uploadimage'));
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
