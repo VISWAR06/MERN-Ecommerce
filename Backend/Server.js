@@ -3,7 +3,7 @@ const cors = require('cors');
 const imageroute = require('./Routes/imageroute.js');
 require('dotenv').config();
 const db = require('./config/db.js');
-
+const path=require('path')
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -18,7 +18,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('working in express');
 });
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))) 
 app.use('/api', imageroute);
 
 // Serve uploaded images statically (optional)

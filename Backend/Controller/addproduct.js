@@ -41,7 +41,7 @@ const removeproduct = async (req, res) => {
 const allproduct = async (req, res) => {
   try {
     const allproducts = await Product.find({});
-    res.status(200).json({ products: allproducts });
+    res.status(200).json(allproducts);
   } catch (e) {
     res.status(400).json({ message: e.message });
   }
