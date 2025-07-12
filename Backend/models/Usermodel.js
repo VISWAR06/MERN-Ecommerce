@@ -4,5 +4,5 @@ const usermodel=mongoose.Schema({
     email:{type:String,required:true,unique:true,lowercase:true},
     password:{type:String,required:true,minlength:6}
 })
-const users = mongoose.model("users",usermodel)
+const users = mongoose.model("user",usermodel)
 module.exports=users
