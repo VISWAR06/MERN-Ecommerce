@@ -1,8 +1,24 @@
+const multer = require('multer');
+const path = require('path');
 const Product = require('../models/addprdtmodel');
+
+// Multer configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../uploadimage'));
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const filename = `${Date.now()}${ext}`;
+    cb(null, filename);
+  },
+});
+
+const upload = multer({ storage });
 
 const addproduct = async (req, res) => {
   try {
-    const { id, name, category, new_price } = req.body;
+    const { name, category, new_price } = req.body;
     const image = req.file ? req.file.filename : null;
 
     if (!image) {
@@ -10,7 +26,6 @@ const addproduct = async (req, res) => {
     }
 
     const newProduct = new Product({
-      id,
       name,
       category,
       new_price,
@@ -18,23 +33,24 @@ const addproduct = async (req, res) => {
     });
 
     await newProduct.save();
-    res.status(200).json({ message: 'Product added successfully' });
+    res.status(200).json({ message: 'Product added successfully', product: newProduct });
   } catch (e) {
-    console.error(e.message);
-    res.status(400).json({ message: e.message });
+    console.error('Error adding product:', e);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
 const removeproduct = async (req, res) => {
-  const { id } = req.body;
   try {
-    const result = await Product.findOneAndDelete({ id });
+    const { id } = req.params; // Changed from req.body to req.params
+    const result = await Product.findByIdAndDelete(id);
     if (!result) {
       return res.status(404).json({ message: 'Product not found' });
     }
     res.status(200).json({ message: 'Removed successfully' });
   } catch (e) {
-    res.status(400).json({ message: e.message });
+    console.error('Error removing product:', e);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
@@ -43,8 +59,9 @@ const allproduct = async (req, res) => {
     const allproducts = await Product.find({});
     res.status(200).json(allproducts);
   } catch (e) {
-    res.status(400).json({ message: e.message });
+    console.error('Error fetching products:', e);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
-module.exports = { addproduct, removeproduct, allproduct };
+module.exports = { upload, addproduct, removeproduct, allproduct };

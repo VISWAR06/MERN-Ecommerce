@@ -1,31 +1,63 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const Allproducts = () => {
-  const [allprdt, setAllprdt] = useState([])
-  const fetchinfo = async()=>{
-    await fetch('http://localhost:5000/api/allproduct')
-    .then((res)=>res.json())
-    .then((data)=>{setAllprdt(data)})
-  }
-  useEffect(()=>(
-    fetchinfo()
-  ),[])
+  const [allprdt, setAllprdt] = useState([]);
+ 
+ 
+
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/allproduct');
+      setAllprdt(res.data);
+    } catch (error) {
+      
+      console.error('Error:', error);
+    } 
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const removeProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/removeproduct/${id}`);
+      fetchProducts(); // Refresh the list
+    } catch (error) {
+    
+      console.error('Delete error:', error);
+    }
+  };
+
 
   return (
-    <div>
-      <h1>allproduct</h1>
-      <p>Name</p>
-      <p>category</p>
-      <p>price</p>
-      {allprdt.map((prdocut,i)=>{
-        return <div key={i}>
-          <img src={prdocut.image} alt="" />
+    <div >
+      <h1>All Products</h1>
+      <div >
+        {allprdt.map((product) => (
+          <div key={product._id} >
+            {product.image && (
+              <img
+                src={`http://localhost:5000/uploadimage/${product.image}`}
+                alt={product.name}
+                style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+              />
+            )}
+            <h3>{product.name}</h3>
+            <p>Category: {product.category}</p>
+            <p>Price: ${product.new_price}</p>
+            <button 
+              onClick={() => removeProduct(product._id)}
+              
+            >
+              Delete Product
+            </button>
           </div>
-      })}
+        ))}
+      </div>
     </div>
-   
-  )
-}
+  );
+};
 
-export default Allproducts
+export default Allproducts;
