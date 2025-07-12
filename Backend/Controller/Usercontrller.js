@@ -10,10 +10,15 @@ const signup = async(req,res)=>{
         }
         if(password.length<6)res.status(500).json({message:"enter strong password"})
      
-       const user = await users.create({name,email,password})
+      const hashed=await bcrypt.hash(password,10)
+      const add=await users({
+        name,email,password:hashed
+      })
+      await add.save()
        const token=jwt.sign({
-        id:user._id,email:user.email
-       },process.env.SECRET_KEY,process.env.EXP)
+        id:add._id,email:add.email
+       },process.env.SECRET_KEY,
+  { expiresIn: process.env.EXP || '1h' })
         res.status(200).json({message:"user created",token})
 
     }catch(e){
@@ -23,12 +28,19 @@ const signup = async(req,res)=>{
 const login = async(req,res)=>{
     try{
         const {email,password}=req.body;
-        const check=await Users.findOne({email})
+        const check=await users.findOne({email})
         if(!check)res.status(401).json({message:"not founded"})
         const match=await bcrypt.compare(password,check.password)
-
-    }catch(e){
+    if(!match)res.status(400).json({messge:'not match of passwrod'})
+        const token=jwt.sign({id:check._id,email:check.email},process.env.SECRET_KEY,
+  { expiresIn: process.env.EXP || '1h' })
+res.status(200).json({token,message:"logined succesfully"})
+    }catch(e){ res.status(500).json({message:e.message})
 
     }
+
+}
+const info= async(req,res)=>{
+
 }
 module.exports={signup,login,info}
