@@ -1,5 +1,6 @@
 const users=require('../models/Usermodel')
 const jwt=require('jsonwebtoken')
+const bcrypt=require('bcrypt')
 const signup = async(req,res)=>{
     try{
         const {name,email,password}=req.body;
@@ -19,4 +20,15 @@ const signup = async(req,res)=>{
         res.status(500).json({message:e.message})
     }
 }
-module.exports={signup}
+const login = async(req,res)=>{
+    try{
+        const {email,password}=req.body;
+        const check=await Users.findOne({email})
+        if(!check)res.status(401).json({message:"not founded"})
+        const match=await bcrypt.compare(password,check.password)
+
+    }catch(e){
+
+    }
+}
+module.exports={signup,login,info}
