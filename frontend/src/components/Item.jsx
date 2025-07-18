@@ -8,7 +8,7 @@ const Item = (props) => {
         <img src={props.image} alt="product" className="w-full h-64 object-cover mb-3" />
       </Link>
       <h3 className="text-lg font-semibold truncate">{props.name}</h3>
-      <h2 className="text-blue-600 font-bold">${props.new_price}</h2>
+      <h2 className="text-black font-bold">${props.new_price}</h2>
     </div>
   );
 };
