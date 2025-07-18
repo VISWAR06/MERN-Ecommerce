@@ -4,8 +4,8 @@ import Item from './Item'
 const Newcollections = () => {
   return (
     <div>
-        <h1>NEW COLLECITONS</h1>
-        <div>
+        <h1 className='flex justify-center text-3xl font-bold'>NEW COLLECITONS</h1>
+        <div className='grid grid-cols-1 md:grid-cols-3 mt-10'>
             {newproducts.map((item,index)=>
 <Item key={index} id={item.id} name={item.name} image={item.image} new_price={item.new_price} />
         )}
