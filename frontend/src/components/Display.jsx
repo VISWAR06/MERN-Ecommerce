@@ -14,7 +14,7 @@ const Display = (products) => {
         <div> <img   src={product.image} alt="" /></div>
         
         
-        {/*rightside */}
+       
         <div><p>{product.name}</p></div>
         <div className='flex'>
           <img src={star} alt="star" />
