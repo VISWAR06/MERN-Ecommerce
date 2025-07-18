@@ -4,7 +4,7 @@ import hero from '../Assets/Frontend_Assets/hero_image.png';
 
 const Hero = () => {
   return (
-    <div className=" h-[100vh] w-full flex items-center justify-between px-10 text-black">
+    <div className=" border border-gray-200 bg-purple-50 h-[100vh] w-full flex items-center justify-between px-10 text-black">
 
      
       <div className='flex flex-col gap-6'>
