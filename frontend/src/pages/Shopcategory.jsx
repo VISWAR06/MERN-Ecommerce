@@ -8,8 +8,8 @@ const Shopcategory = (props) => {
     <div>
 
       <img src={props.banner} alt='image' />
-      <div><p>showing 1-12 out of 36 products</p></div>
-      <div>
+      <div><p className='mt-3'>showing 1-12 out of 36 products</p></div>
+      <div className='grid gird-cols-1 md:grid-cols-3'>
        {all.map((item,i)=>{
         if(props.category===item.category){
           return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} />

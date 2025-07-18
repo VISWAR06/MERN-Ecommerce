@@ -10,9 +10,9 @@ const Hero = () => {
       <div className='flex flex-col gap-6'>
         <h1 className='font-extrabold text-6xl leading-tight'>Latest Arrivals</h1>
         <div className='flex  gap-3 text-2xl font-medium'>
-          <Link to='/men' className='hover:underline'><button className='rounded-lg bg-black text-white'>For Men</button></Link>
-          <Link to='/men' className='hover:underline'><button className='rounded-lg bg-black  text-white'>For Women</button></Link>
-          <Link to='/men' className='hover:underline'><button className='rounded-lg bg-black  text-white'>For kids</button></Link>
+          <Link to='/mens' className='hover:underline'><button className='rounded-lg bg-black text-white'>For Men</button></Link>
+          <Link to='/womens' className='hover:underline'><button className='rounded-lg bg-black  text-white'>For Women</button></Link>
+          <Link to='/kids' className='hover:underline'><button className='rounded-lg bg-black  text-white'>For kids</button></Link>
           
         </div>
       </div>
