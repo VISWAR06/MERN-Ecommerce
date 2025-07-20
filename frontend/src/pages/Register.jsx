@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-  const [signup,setSignup]=useState({
+  const[formData,setFormData]=useState({
     name:"",email:"",password:""
   })
-
-  const onch=(e)=>{
-    setSignup({...signup,[e.target.name]:e.target.value})
+   const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+    console.log(formData)
+  };
+  const sub=()=>{
+    console.log(formData)
   }
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
@@ -17,25 +20,25 @@ const Register = () => {
 
         <div className="w-full flex flex-col space-y-3">
           <input
-            name="name"
-            value={signup.name}
-            onChange={onch}
+           name="name"
+            value={formData.name}
+            onChange={handleChange}
             type="text"
             placeholder="Name"
             className="px-3 py-2 border border-gray-300 rounded"
           />
           <input
            name="email"
-            value={signup.email}
-            onChange={onch}
+            value={formData.email}
+            onChange={handleChange}
             type="email"
             placeholder="Email"
             className="px-3 py-2 border border-gray-300 rounded"
           />
           <input
            name="password"
-            value={signup.password}
-            onChange={onch}
+            value={formData.password}
+            onChange={handleChange}
             type="password"
             placeholder="Password"
             className="px-3 py-2 border border-gray-300 rounded"
@@ -54,7 +57,7 @@ const Register = () => {
           <p>I agree to the Terms of Use & Privacy Policy</p>
         </div>
 
-        <button className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
+        <button onClick={()=>sub()} className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
           SIGNUP
         </button>
 
