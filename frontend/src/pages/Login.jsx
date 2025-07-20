@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+ 
+  
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="w-80 bg-white p-6 rounded-md shadow-md flex flex-col justify-center items-center space-y-4">

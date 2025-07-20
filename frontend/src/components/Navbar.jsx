@@ -20,7 +20,7 @@ const Navbar = () => {
         
 
        
-            <div className='flex items-center'><Link to='/login'><button className='bg-black text-white  rounded-xl border-2 border-violet-400'>Login</button></Link>
+            <div className='flex items-center'><Link to='/login'><button className='bg-purple-500 text-white   border-2 border-violet-400'>Login</button></Link>
             <Link to='/cart'><img src={cart} alt='cart' /></Link></div>
 
       
