@@ -1,75 +1,46 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+const users=require('../models/Usermodel')
+const jwt=require('jsonwebtoken')
+const bcrypt=require('bcrypt')
+const signup = async(req,res)=>{
+    try{
+        const {name,email,password}=req.body;
+        const check=await users.findOne({email})
+        if(check){
+            res.status(400).json({message:"user alredy there"})
+        }
+        if(password.length<6)res.status(500).json({message:"enter strong password"})
+     
+      const hashed=await bcrypt.hash(password,10)
+      const add=await users({
+        name,email,password:hashed
+      })
+      await add.save()
+       const token=jwt.sign({
+        id:add._id,email:add.email
+       },process.env.SECRET_KEY,
+  { expiresIn: process.env.EXP || '1h' })
+        res.status(200).json({message:"user created",token})
 
-const SignupForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(e.password.length<6)alert(res.send("Short Password"))
-    try {
-      const res = await axios.post('http://localhost:5000/signup', formData);
-      alert(res.data.message);
-      console.log('Token:', res.data.token);
-      navigate('/login');  
-    } catch (err) {
-      alert(err.response?.data?.message || 'Signup Failed');
+    }catch(e){
+        res.status(500).json({message:e.message})
     }
-  };
+}
+const login = async(req,res)=>{
+    try{
+        const {email,password}=req.body;
+        const check=await users.findOne({email})
+        if(!check)res.status(401).json({message:"not founded"})
+        const match=await bcrypt.compare(password,check.password)
+    if(!match)res.status(400).json({messge:'not match of passwrod'})
+        const token=jwt.sign({id:check._id,email:check.email},process.env.SECRET_KEY,
+  { expiresIn: process.env.EXP || '1h' })
+res.status(200).json({token,message:"logined succesfully"})
+    }catch(e){ res.status(500).json({message:e.message})
 
-  return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="w-80 bg-white p-6 rounded-md shadow-md flex flex-col justify-center items-center space-y-4"
-      >
-        <h2 className="text-2xl font-bold">Signup</h2>
+    }
 
-        <div className="w-full flex flex-col space-y-3">
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Name"
-            className="px-3 py-2 border border-gray-300 rounded"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email"
-            className="px-3 py-2 border border-gray-300 rounded"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            className="px-3 py-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
+}
+const info= async(req,res)=>{
 
-        <button
-          type="submit"
-          className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
-        >
-          SIGNUP
-        </button>
-      </form>
-    </div>
-  );
-};
-
-export default SignupForm;
+}
+module.exports={signup,login,info}

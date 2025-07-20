@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
+import axios from'axios'
+
 
 const Register = () => {
+  const navigate=useNavigate()
   const[formData,setFormData]=useState({
     name:"",email:"",password:""
   })
@@ -9,9 +12,24 @@ const Register = () => {
     setFormData({...formData, [e.target.name]: e.target.value});
     console.log(formData)
   };
-  const sub=()=>{
-    console.log(formData)
-  }
+  const sub=async (e)=>{
+    e.preventDefault()
+    e.preventDefault();
+
+    if (formData.password.length < 6) {
+      alert('Password must be at least 6 characters');
+      return;
+    }
+
+    try {
+      const res = await axios.post('http://localhost:5000/user/signup', formData);
+      alert(res.data.message);
+      console.log('Token:', res.data.token);
+      navigate('/login');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Signup Failed');
+    }
+  };
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="w-80 bg-white p-6 rounded-md shadow-md flex flex-col justify-center items-center space-y-4">
@@ -57,7 +75,7 @@ const Register = () => {
           <p>I agree to the Terms of Use & Privacy Policy</p>
         </div>
 
-        <button onClick={()=>sub()} className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
+        <button onClick={(e)=>sub(e)} className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
           SIGNUP
         </button>
 
