@@ -64,7 +64,7 @@ const Display = ({ product, onAddToCart }) => {
           </button>
         </div>
       </div>
-    
+    </div>
   );
 };
 
