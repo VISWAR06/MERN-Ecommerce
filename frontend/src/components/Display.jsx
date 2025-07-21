@@ -5,14 +5,14 @@ import dullstar from '../Assets/Frontend_Assets/star_dull_icon.png';
 const Display = ({ product, onAddToCart }) => {
   return (
     <div className="flex flex-col md:flex-row max-w-6xl mx-auto p-6 gap-6">
-      <div className="w-full md:w-1/2 flex flex-col items-center gap-4">
-        <div className="flex gap-2">
+      <div className="w-full md:w-1/2 flex gap-4">
+        <div className="flex flex-col gap-2">
           <img className="h-20 w-20 object-cover border" src={product.image} alt="img1" />
           <img className="h-20 w-20 object-cover border" src={product.image} alt="img2" />
           <img className="h-20 w-20 object-cover border" src={product.image} alt="img3" />
           <img className="h-20 w-20 object-cover border" src={product.image} alt="img4" />
         </div>
-        <div className="w-full border p-2">
+        <div className="flex-1 border p-2">
           <img
             className="w-full max-h-[500px] object-contain"
             src={product.image}
