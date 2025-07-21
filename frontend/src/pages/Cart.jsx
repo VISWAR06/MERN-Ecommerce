@@ -7,7 +7,7 @@ const App = () => {
   const product = {
     id: 1,
     name: 'Sample Product',
-    image: sampleImage,
+    
     new_price: 199,
   };
 
