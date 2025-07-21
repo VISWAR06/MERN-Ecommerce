@@ -24,7 +24,7 @@ const Login = () => {
       navigate('/')
 
     }catch(err){
-alert(err.response?.data?.message || 'Signup Failed');
+alert(err.response?.data?.message || 'Signin Failed');
     }
 
   }
