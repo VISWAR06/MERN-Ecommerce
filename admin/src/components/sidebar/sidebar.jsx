@@ -3,22 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="h-screen w-64 bg-gray-900 text-white p-6 fixed top-0 left-0 shadow-lg">
-      <h2 className="text-2xl font-bold mb-8">Dashboard</h2>
-      <nav className="flex flex-col gap-4">
-        <Link
-          to="/addproduct"
-          className="text-white hover:bg-gray-700 px-4 py-2 rounded transition duration-200"
-        >
-          ➕ Add Product
-        </Link>
-        <Link
-          to="/allproduct"
-          className="text-white hover:bg-gray-700 px-4 py-2 rounded transition duration-200"
-        >
-          📦 All Products
-        </Link>
-      </nav>
+    <div className="w-52  min-h-screen p-4 flex flex-col gap-4 border">
+      <h2 className="text-black font-bold text-lg mb-4">Admin Menu</h2>
+      <Link to="/addproduct" className="text-black hover:underline">Add Product</Link>
+      <Link to="/allproduct" className="text-black hover:underline">All Products</Link>
     </div>
   );
 };
