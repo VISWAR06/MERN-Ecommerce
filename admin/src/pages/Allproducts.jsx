@@ -17,10 +17,10 @@ const Allproducts = () => {
     fetchProducts();
   }, []);
 
-  const removeProduct = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/removeproduct/${id}`);
-      fetchProducts(); // Refresh the list
+  // const removeProduct = async (id) => {
+  //   try {
+  //     await axios.delete(`http://localhost:5000/api/removeproduct/${id}`);
+  //     fetchProducts(); // Refresh the list
     } catch (error) {
       console.error('Delete error:', error);
     }
