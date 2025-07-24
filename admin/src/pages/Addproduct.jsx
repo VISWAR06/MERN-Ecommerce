@@ -27,7 +27,7 @@ const Addproduct = () => {
       }
 
       const formData = new FormData();
-      formData.append('image', image); // must match multer field name
+      formData.append('image', image); 
       formData.append('id', productdetail.id);
       formData.append('name', productdetail.name);
       formData.append('category', productdetail.category);
